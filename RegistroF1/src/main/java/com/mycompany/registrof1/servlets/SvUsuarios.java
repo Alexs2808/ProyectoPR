@@ -61,16 +61,9 @@ public class SvUsuarios extends HttpServlet {
             System.out.println(NombreUsuario);
             System.out.println(Contrasenia);*/
             
-            //creamos un objeto de tipo ususario
-            Usuarios usu = new Usuarios();
-            //asignamos los valores
-            usu.setNombreEquipo(NombreEquipo);
-            usu.setNombreUsuario(NombreUsuario);
-            usu.setContrasenia(Contrasenia);
-            //los valores se van a la controladora y de ahi se ejecuta el proceso
-            control.crearUsuario(usu);
+            control.crearUsuario(NombreEquipo, NombreUsuario, Contrasenia);
             
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("indexx.jsp");
     }
 
 

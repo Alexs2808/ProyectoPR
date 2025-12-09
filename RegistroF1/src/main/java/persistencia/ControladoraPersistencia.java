@@ -13,6 +13,12 @@ public class ControladoraPersistencia {
     PilotosJpaController pilotos = new PilotosJpaController();
     //JSP --> SERVLET --> CONTROLADORA_LOGICA --> CONTROLADORA_PERSISTENCIA --> JPA --> REALIZA TODAS LAS ACCIONES EN LA BD
 
+    
+    public ControladoraPersistencia(){
+    
+    }
+    
+    
     //create
     public void crearUsuario(Usuarios usu){
         usuJPA.create(usu);
