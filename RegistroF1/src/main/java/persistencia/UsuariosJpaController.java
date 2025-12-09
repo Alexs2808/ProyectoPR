@@ -1,3 +1,4 @@
+
 package persistencia;
 
 import java.io.Serializable;
@@ -19,15 +20,19 @@ public class UsuariosJpaController implements Serializable {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
+
+    public UsuariosJpaController() {
+        emf = Persistence.createEntityManagerFactory("RegistroEstPU");
+        //cuando se necesite usar cualquier metodo, crea una instancia para poder hacer uso de los metodos
+    } 
     
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
     
-    public UsuariosJpaController() {
-        emf = Persistence.createEntityManagerFactory("RegistroEstPU");
-    }
+  
+
     public void create(Usuarios usuarios) {
         EntityManager em = null;
         try {
@@ -52,7 +57,7 @@ public class UsuariosJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = usuarios.getId();
+                Integer id = usuarios.getIdEquipo();
                 if (findUsuarios(id) == null) {
                     throw new NonexistentEntityException("The usuarios with id " + id + " no longer exists.");
                 }
@@ -65,7 +70,7 @@ public class UsuariosJpaController implements Serializable {
         }
     }
 
-    public void destroy(int id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -73,7 +78,7 @@ public class UsuariosJpaController implements Serializable {
             Usuarios usuarios;
             try {
                 usuarios = em.getReference(Usuarios.class, id);
-                usuarios.getId();
+                usuarios.getIdEquipo();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The usuarios with id " + id + " no longer exists.", enfe);
             }
@@ -110,7 +115,7 @@ public class UsuariosJpaController implements Serializable {
         }
     }
 
-    public Usuarios findUsuarios(int id) {
+    public Usuarios findUsuarios(Integer id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Usuarios.class, id);

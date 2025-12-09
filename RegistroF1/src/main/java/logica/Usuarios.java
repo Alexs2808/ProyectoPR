@@ -1,64 +1,76 @@
 package logica;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Usuarios implements Serializable {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO) //Esto genera el ID de forma automatica
-    private int id;
-    private String NombreEquipo;
-    private String NombreUsuario;
-    private String Contrasenia;
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //Esto genera el ID de forma automatica
+    private Integer idEquipo;
+    private String nombreEquipo;
+    private String nombreUsuario;
+    private String contrasenia;
+    @OneToMany(mappedBy = "equipo")
+    private List<Pilotos>ListaPilotos;
 
     public Usuarios() {
     }
 
-    public Usuarios(int id, String NombreEquipo, String NombreUsuario, String Contrasenia) {
-        this.id = id;
-        this.NombreEquipo = NombreEquipo;
-        this.NombreUsuario = NombreUsuario;
-        this.Contrasenia = Contrasenia;
+    public Usuarios(Integer idEquipo, String nombreEquipo, String nombreUsuario, String contrasenia, List<Pilotos> ListaPilotos) {
+        this.idEquipo = idEquipo;
+        this.nombreEquipo = nombreEquipo;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenia = contrasenia;
+        this.ListaPilotos = ListaPilotos;
     }
 
-    public int getId() {
-        return id;
+    public Integer getIdEquipo() {
+        return idEquipo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEquipo(Integer idEquipo) {
+        this.idEquipo = idEquipo;
     }
-
 
     public String getNombreEquipo() {
-        return NombreEquipo;
+        return nombreEquipo;
     }
 
-    public void setNombreEquipo(String NombreEquipo) {
-        this.NombreEquipo = NombreEquipo;
+    public void setNombreEquipo(String nombreEquipo) {
+        this.nombreEquipo = nombreEquipo;
     }
 
     public String getNombreUsuario() {
-        return NombreUsuario;
+        return nombreUsuario;
     }
 
-    public void setNombreUsuario(String NombreUsuario) {
-        this.NombreUsuario = NombreUsuario;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getContrasenia() {
-        return Contrasenia;
+        return contrasenia;
     }
 
-    public void setContrasenia(String Contrasenia) {
-        this.Contrasenia = Contrasenia;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
-    
+
+    public List<Pilotos> getListaPilotos() {
+        return ListaPilotos;
+    }
+
+    public void setListaPilotos(List<Pilotos> ListaPilotos) {
+        this.ListaPilotos = ListaPilotos;
+    }
+
     
     
 }

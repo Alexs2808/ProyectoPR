@@ -6,6 +6,11 @@ import logica.Usuarios;
 public class ControladoraPersistencia {
     
     UsuariosJpaController usuJPA = new UsuariosJpaController();
+    TipoTesterJpaController tipoTesJPA = new TipoTesterJpaController();
+    TiemposSectorJpaController tieSecJPA = new TiemposSectorJpaController();
+    PracticasJpaController pracJPA = new PracticasJpaController();
+    PistasJpaController pistaJPA = new PistasJpaController();
+    PilotosJpaController pilotos = new PilotosJpaController();
     //JSP --> SERVLET --> CONTROLADORA_LOGICA --> CONTROLADORA_PERSISTENCIA --> JPA --> REALIZA TODAS LAS ACCIONES EN LA BD
 
     //create

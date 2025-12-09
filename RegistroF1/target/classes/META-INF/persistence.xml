@@ -3,6 +3,11 @@
   <persistence-unit name="RegistroEstPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>logica.Usuarios</class>
+    <class>logica.Pilotos</class>
+    <class>logica.Pistas</class>
+    <class>logica.Practicas</class>
+    <class>logica.TiemposSector</class>
+    <class>logica.TipoTester</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/basef1?serverTimezone=UTC"/>
