@@ -40,6 +40,7 @@ public class SvUsuarios extends HttpServlet {
         HttpSession misesion = request.getSession();//De la request traeme la sesion
         misesion.setAttribute("listaUsuarios", ListaUsuarios);
         //trae la sesion/identificacion del usuario y setear la lista de usuarios
+        //es decir, trae el equipo, nombre y contrasenia de la sesion abierta
         
         response.sendRedirect("MostrarUsuarios.jsp");
         //reenvia 
@@ -60,6 +61,7 @@ public class SvUsuarios extends HttpServlet {
             /*System.out.println(NombreEquipo);
             System.out.println(NombreUsuario);
             System.out.println(Contrasenia);*/
+            
             
             control.crearUsuario(NombreEquipo, NombreUsuario, Contrasenia);
             

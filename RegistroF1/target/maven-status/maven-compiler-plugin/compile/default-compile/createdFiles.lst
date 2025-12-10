@@ -12,14 +12,12 @@ logica\Pilotos_.class
 persistencia\exceptions\PreexistingEntityException.class
 persistencia\ControladoraPersistencia.class
 persistencia\exceptions\IllegalOrphanException.class
-.netbeans_automatic_build
 logica\Pistas_.class
 com\mycompany\registrof1\servlets\SvUsuarios.class
 persistencia\PistasJpaController.class
 logica\Controladora.class
 logica\Pilotos.class
 logica\TipoTester.class
-com\mycompany\registrof1\servlets\SvLogin.class
 logica\TiemposSector.class
 persistencia\TiemposSectorJpaController.class
 logica\Usuarios_.class

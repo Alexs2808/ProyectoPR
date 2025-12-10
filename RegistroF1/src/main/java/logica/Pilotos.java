@@ -23,7 +23,7 @@ public class Pilotos implements Serializable {
     private String apellidoMaterno;
     private String nacionalidad;
     private Integer edad;
-    private boolean activo;
+    private boolean activo = true;
     @ManyToOne
     @JoinColumn(name="id_equipo")
     private Usuarios equipo;

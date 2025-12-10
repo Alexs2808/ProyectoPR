@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Controladora;
+import logica.Usuarios;
 
 
 @WebServlet(name = "SvLogin", urlPatterns = {"/SvLogin"})
@@ -38,10 +39,13 @@ public class SvLogin extends HttpServlet {
             boolean validacion = false;
             validacion = control.Comprobacion(NombreUsuario, Contrasenia);
             
-            if(validacion == true){
-                HttpSession misesion = request.getSession(true);
-                misesion.setAttribute("NombreUsuario", NombreUsuario);
-                response.sendRedirect("indexx.jsp");
+            if(validacion){
+                
+                Usuarios Equipo = control.getUsuario(NombreUsuario);
+                
+                HttpSession misesion = request.getSession();
+                misesion.setAttribute("equipoLogeado", Equipo);
+                response.sendRedirect("principal.jsp");
             }else{
                 response.sendRedirect("error.jsp");//aca deberia mandar a una pagina que salte un error
             }
