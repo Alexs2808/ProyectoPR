@@ -16,28 +16,28 @@
                     <div class="row gx-5">
                         <div class="col-lg-6">
                             <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="registroPilotos.jsp">Registrar piloto</a>
+                                <img class="img-fluid rounded-3 mb-3" src="https://live.staticflickr.com/1/1231440_aade9c556b.jpg" alt="..." width="550"/>
+                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="registroPilotos.jsp">Registrar piloto(s)</a>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="registroDatos.jsp">Registrar datos</a>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-6">
-                            <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="gestionInformacion.jsp">Gestionar informacion de pilotos</a>
+                                <img class="img-fluid rounded-3 mb-3" src="https://live.staticflickr.com/3439/3197107428_14ca2e4211.jpg" alt="..." width="550"/>
+                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="SvPracticas">Registrar datos</a>
                             </div>
                         </div>
                         
                         <div class="col-lg-6">
                             <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="gestionPilotos.jsp">Gestion de piloto</a>
+                                <img class="img-fluid rounded-3 mb-3" src="https://live.staticflickr.com/2362/2192546562_eae95b68ec.jpg" alt="..." width="550"/>
+                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="SvPilotos">Gestionar informacion de pilotos</a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-5">
+                                <img class="img-fluid rounded-3 mb-3" src="https://live.staticflickr.com/3451/3304736964_6d369df4db.jpg" alt="..." width="550"/>
+                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="mostrarDatos.jsp">Mostrar Estadísticas</a>
                             </div>
                         </div>
 

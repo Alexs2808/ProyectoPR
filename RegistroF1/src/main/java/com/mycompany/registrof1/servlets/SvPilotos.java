@@ -2,6 +2,8 @@ package com.mycompany.registrof1.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Controladora;
+import logica.Pilotos;
 import logica.Usuarios;
 
 
@@ -28,6 +31,16 @@ public class SvPilotos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            
+        /*------METODO PARA MOSTRAR LOS DATOS EN mostrarDatos.jsp -------*/
+        List<Pilotos>listaPilotos = new ArrayList<>();
+        listaPilotos = control.getPilotos();
+        
+        HttpSession misesion = request.getSession();
+        misesion.setAttribute("listaPilotos", listaPilotos);
+        
+        response.sendRedirect("gestionPilotos.jsp");
+        
     }
 
 

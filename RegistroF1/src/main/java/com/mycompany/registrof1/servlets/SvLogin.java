@@ -1,5 +1,6 @@
 package com.mycompany.registrof1.servlets;
 
+import conexionTCP.gestionConexiones;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,23 +33,31 @@ public class SvLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+            
+           
             String NombreUsuario = request.getParameter("NombreUsuario");
             String Contrasenia = request.getParameter("Contrasenia");
             
-            boolean validacion = false;
-            validacion = control.Comprobacion(NombreUsuario, Contrasenia);
+            
+            boolean validacion = control.Comprobacion(NombreUsuario, Contrasenia);
             
             if(validacion){
                 
                 Usuarios Equipo = control.getUsuario(NombreUsuario);
-                
-                HttpSession misesion = request.getSession();
-                misesion.setAttribute("equipoLogeado", Equipo);
-                response.sendRedirect("principal.jsp");
+                String idEquipo = Equipo.getNombreEquipo();
+
+                if(gestionConexiones.registroDispositivo(idEquipo)){
+                    HttpSession misesion = request.getSession();
+                    misesion.setAttribute("equipoLogeado", Equipo);
+                    misesion.setAttribute("idEquipo", idEquipo);
+                    response.sendRedirect("principal.jsp");
+                }else{
+                    request.setAttribute("Error", "El equipo: " + idEquipo + "tiene dos dispositivos conectados");
+                }
             }else{
                 response.sendRedirect("error.jsp");//aca deberia mandar a una pagina que salte un error
-            }
+            } 
+
         
     }
 

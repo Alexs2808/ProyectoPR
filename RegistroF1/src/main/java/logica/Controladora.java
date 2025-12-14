@@ -69,7 +69,85 @@ public class Controladora {
         
         controlPersis.crearPiloto(pil);
         
+    }
+    
+    public List<Pilotos>traerPilotos(){
+        return controlPersis.traerPilotos();
+    }
+    
+    public Pilotos buscarPilotos(int Piloto){
+        return controlPersis.buscarPilotos(Piloto);
+    }
+    
+    
+    public List<Pilotos>getPilotos() {
+        return controlPersis.getPilotos();
+    }
+    
+    public void borrarPiloto(int id){
+        Pilotos piloto = controlPersis.buscarPilotos(id);
+        controlPersis.borrarPracticasConPilotos(id);
+        controlPersis.borrarPiloto(id);
         
     }
     
+    
+    /*----------METODOS PISTAS----------*/
+    public List<Pistas>traerPistas(){
+        return controlPersis.traerPistas();
+    }
+    
+    public Pistas buscarPistas(int Pista){
+        return controlPersis.buscarPista(Pista);
+    }
+    
+    /*---------METODOS TIPOS DE TESTER-------------*/
+    public List<TipoTester>traerTester(){
+        return controlPersis.traerTesters();
+    }
+    
+    public TipoTester buscarTest(int Tester){
+        return controlPersis.buscarTest(Tester);
+    }
+    
+    
+    /*--------METODOS PRACTICAS----------*/
+
+    public Practicas crearPractica(int Pista, int Piloto, int Tester) {
+        Pistas pts = controlPersis.buscarPista(Pista);
+        Pilotos pil = controlPersis.buscarPilotos(Piloto);
+        TipoTester tt = controlPersis.buscarTest(Tester);
+        
+        Practicas prc = new Practicas();
+        prc.setPista(pts);
+        prc.setPiloto(pil);
+        prc.setTipoTester(tt);
+        //prc.setFecha(Fecha)
+        
+        controlPersis.crearPractica(prc);
+        return prc;
+    }
+    
+    public void borrarPracticasConPilotos(int id){
+        controlPersis.borrarPracticasConPilotos(id);
+    }
+    
+    /*----------------------------------*/
+
+    public void crearTest(int Practic, int Vuelta, int Sector, float TiempoSector, float Distancia) {
+    //me equivoque de nombre, era crear tiempo o sector    
+        TiemposSector ts = new TiemposSector();
+        
+        Practicas Prac = controlPersis.buscarPracticas(Practic);
+        
+        ts.setPractica(Prac);
+        ts.setNumVuelta(Vuelta);
+        ts.setNumSector(Sector);
+        ts.setTiempoSector(TiempoSector);
+        ts.setRitmo(Distancia);
+        
+        controlPersis.crearTest(ts);
+    }
+
+
 }

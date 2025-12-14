@@ -8,9 +8,9 @@
     <%@include file="components/header.jsp"%>
     <%@include file="components/bodyCabecera.jsp"%>
 
-
-    <h1>Registro de Pilotos</h1>
-    <p></p>
+    <br>
+    <h1 align="center">Registro de Pilotos</h1>
+    <br>
 
     <div class="row gx-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6">
