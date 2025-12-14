@@ -2,6 +2,8 @@ package com.mycompany.registrof1.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,8 +34,18 @@ public class SvPilotosElim extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        int id = Integer.parseInt(request.getParameter("id"));
-        control.borrarPiloto(id);
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            control.desactivarPiloto(id);
+            response.sendRedirect("SvPilotos?desativados=ok"); 
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            response.sendRedirect("SvPilotos?error=idInvalido");
+        }catch(Exception e){
+             e.printStackTrace();
+            response.sendRedirect("SvPilotos?error=idInvalido");           
+        }
     }
 
     @Override

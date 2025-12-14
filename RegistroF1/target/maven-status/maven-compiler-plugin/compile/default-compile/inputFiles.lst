@@ -1,4 +1,5 @@
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\persistencia\PracticasJpaController.java
+C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\conexionTCP\clienteTCP.java
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\logica\Pilotos.java
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\logica\TiemposSector.java
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\logica\Controladora.java
@@ -6,6 +7,7 @@ C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\com\mycompany
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\persistencia\exceptions\IllegalOrphanException.java
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\com\mycompany\registrof1\servlets\SvUsuarios.java
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\com\mycompany\registrof1\servlets\SvEstadisticas.java
+C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\com\mycompany\registrof1\servlets\SvLanzarTCP.java
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\com\mycompany\registrof1\servlets\SvPilotosEdit.java
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\com\mycompany\registrof1\servlets\SvPilotos.java
 C:\Users\Alexs\Documents\NetBeansProjects\RegistroF1\src\main\java\logica\TipoTester.java

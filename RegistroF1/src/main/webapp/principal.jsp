@@ -12,6 +12,31 @@
                     <div class="text-center mb-5">
                         <h1 class="fw-bolder">Comencemos a trabajar</h1>
                         <p class="lead fw-normal text-muted mb-0">"Never Give Up"</p>
+                        
+                        <%
+                            String tokenTCP = (String) session.getAttribute("tokenTCP");
+                            if (tokenTCP == null) {
+                                response.sendRedirect("index.jsp");
+                                return;
+                            }
+                        %>
+
+                        <section class="py-5">
+                            <div class="container px-5 my-5 text-center">
+                                <h1 class="fw-bolder">Comencemos a trabajar</h1>
+
+                                <p><strong>Token TCP:</strong> <%= tokenTCP %></p>
+
+                                <form action="SvLanzarTCP" method="post">
+                                    <input type="hidden" name="tokenTCP" value="<%= tokenTCP %>">
+                                    <button class="btn btn-success mt-3">
+                                        Conectar Cliente TCP
+                                    </button>
+                                </form>
+                            </div>
+                        </section>
+
+                        
                     </div>
                     <div class="row gx-5">
                         <div class="col-lg-6">
@@ -37,7 +62,7 @@
                         <div class="col-lg-6">
                             <div class="position-relative mb-5">
                                 <img class="img-fluid rounded-3 mb-3" src="https://live.staticflickr.com/3451/3304736964_6d369df4db.jpg" alt="..." width="550"/>
-                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="mostrarDatos.jsp">Mostrar Estadísticas</a>
+                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="SvEstadisticas">Mostrar Estadísticas</a>
                             </div>
                         </div>
 

@@ -68,7 +68,15 @@ public class ControladoraPersistencia {
     
     public List<Pilotos>traerPilotos(){
         //Trae todos los usuarios cargados en la bd
-        return pilJPA.findPilotosEntities();
+    try {
+            TypedQuery<Pilotos> query = pilJPA.getEntityManager().createQuery(
+                "SELECT p FROM Pilotos p WHERE p.activo = true ORDER BY p.nombrePiloto",
+                Pilotos.class
+            );
+            return query.getResultList();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
     }
     
     public Pilotos buscarPilotos(int Piloto){
@@ -80,14 +88,26 @@ public class ControladoraPersistencia {
         return pilJPA.findPilotosEntities();
     }
     
-    public void borrarPiloto(int id){
+    public void desactivarPiloto(int id) throws Exception{
         try {
-            pilJPA.destroy(id);
+            Pilotos piloto = pilJPA.findPilotos(id);
+            if(piloto!=null){
+                piloto.setActivo(false);
+                pilJPA.edit(piloto);
+            }
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+   
     
+    public void editarPiloto(Pilotos pil) {
+        try {
+            pilJPA.edit(pil);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /*--------METODOS PISTAS----------*/
     
     public List<Pistas>traerPistas(){
@@ -124,12 +144,28 @@ public class ControladoraPersistencia {
         tieSecJPA.create(ts);
     }
     
-    public void borrarPracticasConPilotos(int id){
+    /*public void borrarPracticasConPilotos(int id){
         try {
             pracJPA.destroy(id);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
     
+    public List<Practicas> traerPracticas(){
+        try {
+            TypedQuery<Practicas> query = pracJPA.getEntityManager().createQuery(
+                    "SELECT p FROM Practicas p " +
+                    "JOIN FETCH p.piloto pil " +
+                    "JOIN FETCH p.pista pista " +
+                    "JOIN FETCH p.tipoTester tt " +
+                    "LEFT JOIN FETCH p.ListaTiemposSector ts " + 
+                    "ORDER BY p.idPractica, ts.numVuelta",
+                    Practicas.class 
+                    );
+                return query.getResultList();
+            } catch (Exception e) {
+                return new ArrayList<>();
+            }
+    }
 }

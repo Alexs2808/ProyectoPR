@@ -7,7 +7,7 @@ DELETE -- ELIMINACIONES
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="components/header.jsp"%>
 
-<h1>Registro de Equipos</h1>
+<h1 align="center">Registro de Equipos</h1>
 <p></p>
 
 <div class="row gx-5 justify-content-center">

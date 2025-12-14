@@ -8,16 +8,19 @@ import javax.servlet.http.HttpSessionListener;
 public class finalizadorTCP implements HttpSessionListener {
 
     @Override
-    public void sessionCreated(HttpSessionEvent se) {
+    public void sessionDestroyed(HttpSessionEvent se) {
 
+        Object tokenObj = se.getSession().getAttribute("tokenTCP");
+
+        if (tokenObj != null) {
+            String token = tokenObj.toString();
+            gestionConexiones.liberarPorToken(token);
+
+            System.out.println("Sesion web cerrada, token liberado: " + token);
+        }
     }
 
     @Override
-    public void sessionDestroyed(HttpSessionEvent se) {
-        String idEquipo = (String) se.getSession().getAttribute("idEquipo");
-        if(idEquipo != null){
-            gestionConexiones.liberacionDispositivos(idEquipo);
-            System.out.println("Liberacion de cupo: " + idEquipo);
-        }
+    public void sessionCreated(HttpSessionEvent se) {
     }
 }

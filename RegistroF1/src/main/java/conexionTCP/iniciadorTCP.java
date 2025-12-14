@@ -1,30 +1,40 @@
 package conexionTCP;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import javax.servlet.*;
 import javax.servlet.annotation.WebListener;
-
-
 
 @WebListener
 public class iniciadorTCP implements ServletContextListener {
-    
-    private Thread tcp;
-    
+
+    private Thread tcpThread;
+    private servidor servidorTCP;
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-       tcp = new Thread(new Runnable(){
-         public void run(){
-             new servidor().iniciar();
-         }   
+        servidorTCP = new servidor();
+
+        tcpThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                servidorTCP.iniciar();
+            }
         });
-        tcp.start();
+
+        tcpThread.setDaemon(true);
+        tcpThread.start();
+
+        System.out.println("Servidor TCP iniciado desde Tomcat");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        if(tcp !=null && tcp.isAlive()){
-            tcp.interrupt();
-            }
+        servidorTCP.detener();
+        gestionConexiones.limpiarServidor();
+
+        try {
+            tcpThread.join(3000);
+        } catch (InterruptedException ignored) {}
+
+        System.out.println("Servidor TCP detenido por Tomcat");
     }
 }

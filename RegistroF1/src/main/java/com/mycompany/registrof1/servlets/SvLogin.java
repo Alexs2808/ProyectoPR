@@ -2,70 +2,46 @@ package com.mycompany.registrof1.servlets;
 
 import conexionTCP.gestionConexiones;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import logica.Controladora;
 import logica.Usuarios;
 
-
-@WebServlet(name = "SvLogin", urlPatterns = {"/SvLogin"})
+@WebServlet("/SvLogin")
 public class SvLogin extends HttpServlet {
 
-    Controladora control = new Controladora();
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
+    private final Controladora control = new Controladora();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-           
-            String NombreUsuario = request.getParameter("NombreUsuario");
-            String Contrasenia = request.getParameter("Contrasenia");
-            
-            
-            boolean validacion = control.Comprobacion(NombreUsuario, Contrasenia);
-            
-            if(validacion){
-                
-                Usuarios Equipo = control.getUsuario(NombreUsuario);
-                String idEquipo = Equipo.getNombreEquipo();
 
-                if(gestionConexiones.registroDispositivo(idEquipo)){
-                    HttpSession misesion = request.getSession();
-                    misesion.setAttribute("equipoLogeado", Equipo);
-                    misesion.setAttribute("idEquipo", idEquipo);
-                    response.sendRedirect("principal.jsp");
-                }else{
-                    request.setAttribute("Error", "El equipo: " + idEquipo + "tiene dos dispositivos conectados");
-                }
-            }else{
-                response.sendRedirect("error.jsp");//aca deberia mandar a una pagina que salte un error
-            } 
+        String usuario = request.getParameter("NombreUsuario");
+        String pass = request.getParameter("Contrasenia");
 
-        
+        if (!control.Comprobacion(usuario, pass)) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+
+        Usuarios u = control.getUsuario(usuario);
+        String equipo = u.getNombreEquipo();
+
+        String tokenTCP = java.util.UUID.randomUUID().toString();
+
+        if (!gestionConexiones.registrarSesionWeb(equipo, tokenTCP)) {
+            request.setAttribute("Error",
+                    "El equipo " + equipo + " ya tiene 2 dispositivos conectados");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
+        }
+
+        HttpSession session = request.getSession(true);
+        session.setAttribute("usuario", u);
+        session.setAttribute("equipo", equipo);
+        session.setAttribute("tokenTCP", tokenTCP);
+
+        response.sendRedirect("principal.jsp");
     }
-
-    
-    
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

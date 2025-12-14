@@ -33,13 +33,11 @@ public class SvPilotos extends HttpServlet {
             throws ServletException, IOException {
             
         /*------METODO PARA MOSTRAR LOS DATOS EN mostrarDatos.jsp -------*/
-        List<Pilotos>listaPilotos = new ArrayList<>();
-        listaPilotos = control.getPilotos();
+        List<Pilotos>listaPilotos = control.traerPilotos();
         
-        HttpSession misesion = request.getSession();
-        misesion.setAttribute("listaPilotos", listaPilotos);
+        request.setAttribute("listaPilotos", listaPilotos);
         
-        response.sendRedirect("gestionPilotos.jsp");
+        request.getRequestDispatcher("gestionPilotos.jsp").forward(request, response);
         
     }
 

@@ -30,7 +30,7 @@
                             </tr>
                         </thead>
                         <% 
-                            List<Pilotos>listaPilotos = (List)request.getSession().getAttribute("listaPilotos");
+                            List<Pilotos>listaPilotos = (List<Pilotos>)request.getAttribute("listaPilotos");
                             
                             if (listaPilotos == null) {
                                 listaPilotos = new java.util.ArrayList<>();
@@ -47,7 +47,7 @@
                                 <td><%= pil.getEdad()%></td> 
                                <td>
                                    <div>
-                                   <form name="Editar" action="SvPilotosEdit" method="POST">
+                                   <form name="Editar" action="SvPilotosEdit" method="GET">
                                         <button class="btn btn-sm btn-info me-2" type="submit" id="Editar">Editar</button>
                                         <input type="hidden" name="id" value="<%=pil.getIdPiloto()%>">
                                    </form>
