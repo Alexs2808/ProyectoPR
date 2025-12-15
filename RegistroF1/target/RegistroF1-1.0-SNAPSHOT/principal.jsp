@@ -1,9 +1,3 @@
-<%-- 
-    Document   : principal
-    Created on : 9 dic 2025, 16:02:45
-    Author     : Alexs
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="components/header.jsp" %>
 <%@include file="components/bodyCabecera.jsp" %>
@@ -25,7 +19,7 @@
                             <div class="container px-5 my-5 text-center">
                                 <h1 class="fw-bolder">Comencemos a trabajar</h1>
 
-                                <p><strong>Token TCP:</strong> <%= tokenTCP %></p>
+                                <p><!--<strong>Token TCP:</strong> < tokenTCP %>--></p>
 
                                 <form action="SvLanzarTCP" method="post">
                                     <input type="hidden" name="tokenTCP" value="<%= tokenTCP %>">
@@ -69,4 +63,46 @@
                     </div>
                 </div>
             </section>
+                                    
+<!-- MENSAJE UDP TEMPORAL -->
+<div id="udpMensaje" style="
+    display:none;
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#0d6efd;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    z-index:9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+">
+</div>
+
+<script>
+function revisarMensajesUDP() {
+    fetch("<%= request.getContextPath() %>/SvLanzarUDP")
+        .then(response => response.text())
+        .then(texto => {
+            if (texto && texto.trim() !== "") {
+                mostrarMensajeUDP(texto);
+            }
+        });
+}
+
+function mostrarMensajeUDP(mensaje) {
+    const div = document.getElementById("udpMensaje");
+    div.innerText = mensaje;
+    div.style.display = "block";
+
+    setTimeout(() => {
+        div.style.display = "none";
+    }, 3000);
+}
+
+setInterval(revisarMensajesUDP, 2000);
+</script>
+
+
+                                    
 <%@include file="components/bodyFinal.jsp" %>

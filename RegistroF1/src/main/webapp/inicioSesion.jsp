@@ -1,8 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="components/header.jsp"%>
+<br>
 
-<h1>Registro de Equipos</h1>
+<h1 align="center">Iniciar Sesión </h1>
 <p></p>
+<br>
 
 <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">

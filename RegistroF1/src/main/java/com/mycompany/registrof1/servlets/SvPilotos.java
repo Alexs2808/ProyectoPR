@@ -32,7 +32,6 @@ public class SvPilotos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             
-        /*------METODO PARA MOSTRAR LOS DATOS EN mostrarDatos.jsp -------*/
         List<Pilotos>listaPilotos = control.traerPilotos();
         
         request.setAttribute("listaPilotos", listaPilotos);

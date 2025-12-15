@@ -1,6 +1,8 @@
 package com.mycompany.registrof1.servlets;
 
 import conexionTCP.gestionConexiones;
+import conexionTCP.servidor;
+import conexionUDP.manejadorMensajes;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,25 @@ import logica.Usuarios;
 public class SvLogin extends HttpServlet {
 
     private final Controladora control = new Controladora();
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    
+        HttpSession session = request.getSession(false);
+        if (session != null){
+            String token = (String)session.getAttribute("tokenTCP");
+            if(token!=null){
+                servidor.cerrarSesion(token);
+            }
+            
+            manejadorMensajes.limpiar();
+            session.invalidate();
+        }
+        response.sendRedirect("indexx.jsp");
+        
+    
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

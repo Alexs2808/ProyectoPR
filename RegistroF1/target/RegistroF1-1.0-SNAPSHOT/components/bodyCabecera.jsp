@@ -13,6 +13,12 @@
                             <li class="nav-item"><a class="nav-link" href="SvPracticas">Registrar datos</a></li>
                             <li class="nav-item"><a class="nav-link" href="SvEstadisticas">Consultar estadísticas</a></li>
                             <li class="nav-item"><a class="nav-link" href="SvPilotos">Gestion de pilotos</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link text-danger" href="SvLogin"
+                                   onclick="return confirm('¿Deseas cerrar sesión?');">
+                                    Cerrar sesion
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -14,7 +14,6 @@ DELETE -- ELIMINACIONES
                             <div class="col-lg-8 col-xl-6">
 
                                 <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="SvUsuarios" method="POST">
-                                    <!-- Name input-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="NombreEquipo" type="text" placeholder="Ingresa el nombre del equipo" data-sb-validations="required" name="NombreEquipo" />
                                         <label for="NombreEquipo">Nombre del Equipo</label>
@@ -40,7 +39,6 @@ DELETE -- ELIMINACIONES
                                         </div>
                                     </div>
                                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                                    <!-- Submit Button-->
                                     <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Registrar</button></div>
                                 </form>
                             </div>

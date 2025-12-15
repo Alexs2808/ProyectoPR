@@ -8,6 +8,10 @@
         <description>ServletContextListener</description>
         <listener-class>conexionTCP.finalizadorTCP</listener-class>
     </listener>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>conexionUDP.iniciadorUDP</listener-class>
+    </listener>
     <session-config>
         <session-timeout>
             30
